@@ -15,6 +15,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
   name: productcatalogservice
 spec:
   selector:
@@ -22,6 +24,8 @@ spec:
       app: productcatalogservice
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
       labels:
         app: productcatalogservice
     spec:

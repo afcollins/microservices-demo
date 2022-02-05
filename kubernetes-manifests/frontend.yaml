@@ -15,6 +15,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
   name: frontend
 spec:
   selector:
@@ -26,6 +28,7 @@ spec:
         app: frontend
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
+        sidecar.istio.io/inject: "true"
     spec:
       serviceAccountName: default
       containers:
